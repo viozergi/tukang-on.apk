@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUKANG ON - Solusi Cepat Cari Tukang Terpercaya</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        /* ============================================
+           ROOT VARIABLES & GLOBAL STYLES
+           ============================================ */
+        :root {
+            --primary-color: #8B5E3C;
+            --primary-dark: #6d4a2e;
+            --primary-light: #a87b58;
+            --secondary-color: #D4A373;
+            --secondary-light: #f0e0cc;
+            --bg-light: #f8f5f0;
+            --text-dark: #2d1f14;
+            --shadow-sm: 0 2px 8px rgba(139, 94, 60, 0.1);
+            --shadow-md: 0 4px 16px rgba(139, 94, 60, 0.15);
+            --shadow-lg: 0 8px 32px rgba(139, 94, 60, 0.2);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        .text-primary-custom {
+            color: var(--primary-color) !important;
+        }
+        .text-secondary-custom {
+            color: var(--secondary-color) !important;
+        }
+        .bg-primary-custom {
+            background-color: var(--primary-color) !important;
+        }
+        .bg-secondary-custom {
+            background-color: var(--secondary-color) !important;
+        }
+        .bg-light-custom {
+            background-color: var(--bg-light) !important;
+        }
+        .border-primary-custom {
+            border-color: var(--primary-color) !important;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+        .section-subtitle {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+
+        /* ============================================
+           BUTTONS
+           ============================================ */
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .btn-primary-custom:hover,
+        .btn-primary-custom:focus {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .btn-primary-custom:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline-primary-custom {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .btn-outline-primary-custom:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary-custom {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .btn-secondary-custom:hover {
+            background-color: #c49262;
+            border-color: #c49262;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger-custom {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .btn-danger-custom:hover {
+            background-color: #bb2d3b;
+            border-color: #bb2d3b;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm-custom {
+            padding: 6px 16px;
+            font-size: 0.875rem;
+        }
+
+        /* ============================================
+           CARDS
+           ============================================ */
+        .card {
+            border: none;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .card-tukang {
+            transition: var(--transition);
+            cursor: pointer;
+            height: 100%;
+        }
+        .card-tukang:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        .card-tukang .card-img-top {
+            height: 180px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--secondary-light), var(--secondary-color));
+        }
+        .card-tukang .card-body {
+            padding: 1.25rem;
+        }
+        .card-tukang .card-footer {
+            background: transparent;
+            border-top: 1px solid rgba(139, 94, 60, 0.08);
+            padding: 0.75rem 1.25rem;
+        }
+
+        /* ============================================
+           NAVBAR
+           ============================================ */
+        .navbar-custom {
+            background: #fff !important;
+            box-shadow: 0 2px 16px rgba(139, 94, 60, 0.08);
+            padding: 12px 0;
+        }
+        .navbar-custom .navbar-brand {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--primary-color) !important;
+        }
+        .navbar-custom .navbar-brand i {
+            font-size: 1.6rem;
+            margin-right: 8px;
+        }
+        .navbar-custom .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            padding: 8px 16px !important;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .nav-link.active {
+            color: var(--primary-color) !important;
+            background-color: var(--secondary-light);
+        }
+        .navbar-custom .dropdown-menu {
+            border: none;
+            box-shadow: var(--shadow-md);
+            border-radius: var(--radius);
+            padding: 8px 0;
+        }
+        .navbar-custom .dropdown-item {
+            padding: 8px 20px;
+            transition: var(--transition);
+        }
+        .navbar-custom .dropdown-item:hover {
+            background-color: var(--secondary-light);
+            color: var(--primary-color);
+        }
+
+        /* ============================================
+           HERO / BANNER
+           ============================================ */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            padding: 60px 0 50px;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-section h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .hero-section h1 .highlight {
+            color: var(--secondary-color);
+        }
+        .hero-section p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 500px;
+            margin-bottom: 28px;
+        }
+        .hero-section .search-box {
+            background: #fff;
+            border-radius: 50px;
+            padding: 6px;
+            max-width: 550px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+        .hero-section .search-box input {
+            border: none;
+            padding: 14px 22px;
+            border-radius: 50px;
+            font-size: 1rem;
+            flex: 1;
+            outline: none;
+        }
+        .hero-section .search-box input::placeholder {
+            color: #aaa;
+        }
+        .hero-section .search-box button {
+            border-radius: 50px;
+            padding: 12px 32px;
+            background: var(--primary-color);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .hero-section .search-box button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ============================================
+           CATEGORY BADGES / PILLS
+           ============================================ */
+        .category-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: 50px;
+            background: #fff;
+            border: 2px solid #e8e0d8;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .category-pill:hover,
+        .category-pill.active {
+            border-color: var(--primary-color);
+            background: var(--secondary-light);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        .category-pill i {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        /* ============================================
+           RATING STARS
+           ============================================ */
+        .rating-star {
+            color: #FFB800;
+        }
+        .rating-star-empty {
+            color: #ddd;
+        }
+
+        /* ============================================
+           BADGE STATUS
+           ============================================ */
+        .badge-status {
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+        .badge-status.badge-available {
+            background: #d4edda;
+            color: #155724;
+        }
+        .badge-status.badge-unavailable {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .badge-status.badge-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .badge-status.badge-confirmed {
+            background: #cce5ff;
+            color: #004085;
+        }
+        .badge-status.badge-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+        .badge-status.badge-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* ============================================
+           BOOKING CARD
+           ============================================ */
+        .booking-card {
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
+        .booking-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ============================================
+           PROFILE SIDEBAR
+           ============================================ */
+        .profile-sidebar {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--secondary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin: 0 auto 12px;
+        }
+
+        /* ============================================
+           FORM STYLES
+           ============================================ */
+        .form-control-custom {
+            border: 2px solid #e8e0d8;
+            border-radius: 10px;
+            padding: 12px 16px;
+            transition: var(--transition);
+            background: #fff;
+        }
+        .form-control-custom:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(139, 94, 60, 0.1);
+        }
+        .form-label-custom {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           TOAST / ALERT
+           ============================================ */
+        .toast-container-custom {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        .toast-custom {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 16px 24px;
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--primary-color);
+            min-width: 300px;
+            animation: slideInRight 0.4s ease;
+            margin-bottom: 12px;
+        }
+        .toast-custom.toast-success {
+            border-left-color: #28a745;
+        }
+        .toast-custom.toast-error {
+            border-left-color: #dc3545;
+        }
+        .toast-custom.toast-warning {
+            border-left-color: #ffc107;
+        }
+        .toast-custom .toast-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #999;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer-custom {
+            background: #fff;
+            border-top: 1px solid #e8e0d8;
+            padding: 32px 0 24px;
+            margin-top: auto;
+        }
+        .footer-custom a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-custom a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ============================================
+           RESPONSIVE / MOBILE-FIRST
+           ============================================ */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 0 35px;
+                border-radius: 0 0 20px 20px;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .hero-section p {
+                font-size: 1rem;
+            }
+            .hero-section .search-box {
+                flex-direction: column;
+                background: transparent;
+                box-shadow: none;
+                padding: 0;
+                gap: 10px;
+            }
+            .hero-section .search-box input {
+                border-radius: 50px;
+                background: #fff;
+                box-shadow: var(--shadow-sm);
+            }
+            .hero-section .search-box button {
+                border-radius: 50px;
+                width: 100%;
+            }
+
+            .category-pill {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+            }
+
+            .toast-container-custom {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+            }
+            .toast-custom {
+                min-width: unset;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section h1 {
+                font-size: 1.6rem;
+            }
+            .card-tukang .card-img-top {
+                height: 140px;
+            }
+        }
+
+        /* ============================================
+           UTILITY HELPERS
+           ============================================ */
+        .gap-1 { gap: 0.25rem; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 1rem; }
+        .gap-4 { gap: 1.5rem; }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+        .text-ellipsis {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .page-wrapper {
+            flex: 1;
+        }
+
+        /* Loading shimmer effect */
+        .shimmer {
+            background: linear-gradient(90deg, #f0e8e0 25%, #e8ddd0 50%, #f0e8e0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Modal custom */
+        .modal-content-custom {
+            border: none;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+        }
+        .modal-header-custom {
+            border-bottom: 2px solid var(--secondary-light);
+            padding: 20px 24px;
+        }
+        .modal-header-custom .modal-title {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        .modal-body-custom {
+            padding: 24px;
+        }
+        .modal-footer-custom {
+            border-top: 2px solid var(--secondary-light);
+            padding: 16px 24px;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .empty-state i {
+            font-size: 4rem;
+            color: #ddd;
+        }
+        .empty-state h5 {
+            margin-top: 16px;
+            color: var(--text-dark);
+        }
+        .empty-state p {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+    TOAST NOTIFICATION CONTAINER
+    ========================================== -->
+    <div class="toast-container-custom" id="toastContainer"></div>
+
+    <!-- ==========================================
+    NAVBAR
+    ========================================== -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-tools"></i> TUKANG ON
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#page-home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#page-tukangs">Cari Tukang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#page-bookings">Booking Saya</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <!-- Tampilan Login (Guest) -->
+                    <li class="nav-item d-none" id="navGuest">
+                        <a class="nav-link" href="#" onclick="showLoginModal()">Login</a>
+                    </li>
+                    <li class="nav-item d-none" id="navGuestRegister">
+                        <a class="nav-link" href="#" onclick="showRegisterModal()">Daftar</a>
+                    </li>
+                    <!-- Tampilan User (Logged In) -->
+                    <li class="nav-item dropdown d-none" id="navUser">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> <span id="userNameDisplay">User</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#page-profile"><i class="bi bi-person"></i> Profil</a></li>
+                            <li><a class="dropdown-item" href="#page-bookings"><i class="bi bi-calendar-check"></i> Booking Saya</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+    MAIN CONTENT WRAPPER
+    ========================================== -->
+    <div class="page-wrapper">
+
+        <!-- ==========================================
+        PAGE: HOME
+        ========================================== -->
+        <div id="page-home">
+
+            <!-- HERO SECTION -->
+            <section class="hero-section">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h1>
+                                Butuh Tukang? <br>
+                                <span class="highlight">Tinggal Klik!</span>
+                            </h1>
+                            <p>
+                                Temukan tukang profesional terpercaya dengan cepat, dekat, dan transparan.
+                                Dari AC, listrik, ledeng, hingga bangunan.
+                            </p>
+                            <div class="search-box d-flex">
+                                <input type="text" placeholder="Cari tukang, misal: AC, listrik..." id="homeSearchInput">
+                                <button onclick="searchTukang()">
+                                    <i class="bi bi-search"></i> Cari
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-none d-lg-block text-center">
+                            <i class="bi bi-tools" style="font-size: 10rem; opacity: 0.3; color: #fff;"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- KATEGORI POPULER -->
+            <section class="container mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h3 class="section-title">Kategori Populer</h3>
+                        <p class="section-subtitle">Pilih kategori tukang yang Anda butuhkan</p>
+                    </div>
+                    <a href="#page-tukangs" class="btn btn-outline-primary-custom btn-sm-custom">Lihat Semua</a>
+                </div>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#page-tukangs?category=ac" class="category-pill" data-category="ac">
+                        <i class="bi bi-snow2"></i> AC
+                    </a>
+                    <a href="#page-tukangs?category=listrik" class="category-pill" data-category="listrik">
+                        <i class="bi bi-lightning"></i> Listrik
+                    </a>
+                    <a href="#page-tukangs?category=ledeng" class="category-pill" data-category="ledeng">
+                        <i class="bi bi-droplet"></i> Ledeng
+                    </a>
+                    <a href="#page-tukangs?category=bangunan" class="category-pill" data-category="bangunan">
+                        <i class="bi bi-building"></i> Bangunan
+                    </a>
+                    <a href="#page-tukangs?category=lainnya" class="category-pill" data-category="lainnya">
+                        <i class="bi bi-grid"></i> Lainnya
+                    </a>
+                </div>
+            </section>
+
+            <!-- REKOMENDASI TUKANG -->
+            <section class="container mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h3 class="section-title">Rekomendasi Tukang</h3>
+                        <p class="section-subtitle">Tukang terbaik pilihan kami untuk Anda</p>
+                    </div>
+                </div>
+                <div class="row" id="homeRecommendedTukangs">
+                    <!-- Cards akan di-render oleh JavaScript -->
+                </div>
+            </section>
+
+            <!-- STATISTIK -->
+            <section class="container mb-5">
+                <div class="row g-4 text-center">
+                    <div class="col-6 col-md-3">
+                        <div class="card p-4">
+                            <h2 class="text-primary-custom fw-bold">500+</h2>
+                            <p class="text-muted mb-0">Tukang Tersedia</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card p-4">
+                            <h2 class="text-primary-custom fw-bold">1.200+</h2>
+                            <p class="text-muted mb-0">Booking Selesai</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card p-4">
+                            <h2 class="text-primary-custom fw-bold">4.8</h2>
+                            <p class="text-muted mb-0">Rating Rata-rata</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card p-4">
+                            <h2 class="text-primary-custom fw-bold">15+</h2>
+                            <p class="text-muted mb-0">Kategori Jasa</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <!-- END PAGE: HOME -->
+
+
+        <!-- ==========================================
+        PAGE: CARI TUKANG
+        ========================================== -->
+        <div id="page-tukangs" class="d-none">
+            <div class="container py-4">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h3 class="section-title"><i class="bi bi-search"></i> Cari Tukang</h3>
+                        <p class="section-subtitle">Temukan tukang terpercaya di dekat Anda</p>
+                    </div>
+                </div>
+
+                <!-- Filter -->
+                <div class="row mb-4">
+                    <div class="col-md-8">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control form-control-custom" placeholder="Cari tukang..." id="tukangSearchInput">
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-select form-control-custom" id="tukangCategoryFilter">
+                                    <option value="">Semua Kategori</option>
+                                    <option value="ac">AC</option>
+                                    <option value="listrik">Listrik</option>
+                                    <option value="ledeng">Ledeng</option>
+                                    <option value="bangunan">Bangunan</option>
+                                    <option value="lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary-custom w-100" onclick="filterTukangs()">
+                                    <i class="bi bi-funnel"></i> Filter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- List Tukang -->
+                <div class="row" id="tukangListContainer">
+                    <!-- Cards akan di-render oleh JavaScript -->
+                </div>
+
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center mt-4">
+                    <nav>
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE: CARI TUKANG -->
+
+
+        <!-- ==========================================
+        PAGE: DETAIL TUKANG
+        ========================================== -->
+        <div id="page-detail" class="d-none">
+            <div class="container py-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('page-tukangs')">Cari Tukang</a></li>
+                        <li class="breadcrumb-item active" id="detailBreadcrumbName">Detail Tukang</li>
+                    </ol>
+                </nav>
+
+                <div class="row" id="detailContent">
+                    <!-- Content akan di-render oleh JavaScript -->
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE: DETAIL TUKANG -->
+
+
+        <!-- ==========================================
+        PAGE: BOOKING SAYA
+        ========================================== -->
+        <div id="page-bookings" class="d-none">
+            <div class="container py-4">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h3 class="section-title"><i class="bi bi-calendar-check"></i> Booking Saya</h3>
+                        <p class="section-subtitle">Daftar pemesanan tukang Anda</p>
+                    </div>
+                </div>
+
+                <div id="bookingListContainer">
+                    <!-- Booking cards akan di-render oleh JavaScript -->
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE: BOOKING SAYA -->
+
+
+        <!-- ==========================================
+        PAGE: PROFILE
+        ========================================== -->
+        <div id="page-profile" class="d-none">
+            <div class="container py-4">
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <div class="profile-sidebar text-center">
+                            <div class="profile-avatar">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            <h5 class="fw-bold" id="profileName">User</h5>
+                            <p class="text-muted" id="profileEmail">user@example.com</p>
+                            <p class="text-muted" id="profilePhone">0812-3456-7890</p>
+                            <hr>
+                            <div class="text-start">
+                                <p><i class="bi bi-tools text-primary-custom me-2"></i> Role: <span id="profileRole">User</span></p>
+                                <p><i class="bi bi-calendar-check text-primary-custom me-2"></i> Total Booking: <span id="profileTotalBookings">0</span></p>
+                            </div>
+                            <button class="btn btn-outline-primary-custom w-100 mt-3" onclick="showEditProfileModal()">
+                                <i class="bi bi-pencil"></i> Edit Profil
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-primary-custom">Aktivitas Terbaru</h5>
+                                <hr>
+                                <div id="profileRecentActivity">
+                                    <!-- Activity items akan di-render oleh JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PAGE: PROFILE -->
+
+    </div>
+    <!-- END MAIN CONTENT WRAPPER -->
+
+
+    <!-- ==========================================
+    FOOTER
+    ========================================== -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h6 class="fw-bold text-primary-custom"><i class="bi bi-tools"></i> TUKANG ON</h6>
+                    <p class="text-muted small">Solusi Cepat Cari Tukang Terpercaya</p>
+                    <p class="text-muted small mb-0">© 2026 TUKANG ON. All rights reserved.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h6 class="fw-bold">Menu</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#page-home">Beranda</a></li>
+                        <li><a href="#page-tukangs">Cari Tukang</a></li>
+                        <li><a href="#page-bookings">Booking Saya</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold">Kontak</h6>
+                    <ul class="list-unstyled small">
+                        <li><i class="bi bi-envelope me-2"></i> info@tukangon.com</li>
+                        <li><i class="bi bi-whatsapp me-2"></i> 0812-3456-7890</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ==========================================
+    MODAL: LOGIN
+    ========================================== -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-content-custom">
+                <div class="modal-header modal-header-custom">
+                    <h5 class="modal-title"><i class="bi bi-box-arrow-in-right"></i> Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body modal-body-custom">
+                    <form id="loginForm" onsubmit
